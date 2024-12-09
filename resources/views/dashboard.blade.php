@@ -14,11 +14,15 @@
                             <strong class="font-bold">{{ session(' success')}}</strong>
                             <span class="block sm:inline">Employee has been added successfully</span>
                         </div>
-                    @endif
-                    @if(session('success_deleted'))
+                    @elseif(session('success_delete'))
                     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
                             <strong class="font-bold">{{ session('success_delete')}}</strong>
                             <span class="block sm:inline">Employee has been deleted successfully</span>
+                        </div>
+                    @elseif(session('success_edit'))
+                    <div class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <strong class="font-bold">{{ session('success_edit')}}</strong>
+                            <span class="block sm:inline">Employee data has been updated</span>
                         </div>
                     @endif
                     <h3 class = "text-lg font-medium mb-4">Add New Employee</h3>

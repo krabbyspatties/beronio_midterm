@@ -41,12 +41,14 @@ class EmployeeController extends Controller
             'last_name'=>'required',
             'first_name'=>'required',
             'middle_name'=>'required',
-            'email'=>'required|email|unique:employees,email,',
+            'email'=>'required|email|unique:employees,email,'.$employee->id,
             'job_title'=>'required',
         ]);
 
+        // dd($validated);
+
         $employee->update($validated);
-        return redirect()->route('dashboard')->with('success', 'Employee updated Successfully');
+        return redirect()->route('dashboard')->with('success_edit', 'Employee updated Successfully');
     }
 }
 
