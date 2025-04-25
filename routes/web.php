@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
@@ -20,10 +21,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/employee/store', [EmployeeController::class, 'store']) -> name('employee.store');
-Route::delete('/employee/{employee}', [EmployeeController:: class, 'destroy']) -> name('employee.destroy');
-Route::get('/employee/{employee}/edit', [EmployeeController::class, 'edit']) -> name('employee.edit');
-Route::put('/employee/{employee}', [EmployeeController::class, 'update']) -> name('employee.update');
+Route::post('/employee/store', [EmployeeController::class, 'store'])->name('employee.store');
+Route::delete('/employee/{employee}', [EmployeeController::class, 'destroy'])->name('employee.destroy');
+Route::get('/employee/{employee}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
+Route::put('/employee/{employee}', [EmployeeController::class, 'update'])->name('employee.update');
+
+Route::get('/feedback', [FeedbackController::class, 'message'])->name('feedback');
+Route::post('/feedback', [FeedbackController::class, 'store']);
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

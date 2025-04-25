@@ -11,7 +11,7 @@
                 <div class = "mb-6">
                     @if(session('success'))
                         <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
-                            <strong class="font-bold">{{ session(' success')}}</strong>
+                            <strong class="font-bold">{{ session('success')}}</strong>
                             <span class="block sm:inline">Employee has been added successfully</span>
                         </div>
                     @elseif(session('success_delete'))
@@ -53,13 +53,16 @@
                             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                                 Add Employee
                             </button>
+                            <a href="{{route('feedback')}}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                Message Admin
+                            </a>
                         </div>
                     </form>
                 </div>
 
                 <!-- Student List -->
                 <div class="mt-8">
-                    <h3 class="text-lg font-medium ab-4">Student List</h3>
+                    <h3 class="text-lg font-medium mb-4">Student List</h3>
                     <table class="min-w-full bg-white border">
                         <thead>
                             <tr>
@@ -73,20 +76,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($employee as $key => $employee)
+                            @foreach ($employee as $key => $emp)
                                 <tr>
                                     <td class="py-2 border-b px-4">{{ $key + 1 }}</td> 
-                                    <td class="py-2 border-b px-4">{{ $employee->last_name }}</td>
-                                    <td class="py-2 border-b px-4">{{ $employee->first_name }}</td>
-                                    <td class="py-2 border-b px-4">{{ $employee->middle_name }}</td>
-                                    <td class="py-2 border-b px-4">{{ $employee->email }}</td>
-                                    <td class="py-2 border-b px-4">{{ $employee->job_title }}</td>
+                                    <td class="py-2 border-b px-4">{{ $emp->last_name }}</td>
+                                    <td class="py-2 border-b px-4">{{ $emp->first_name }}</td>
+                                    <td class="py-2 border-b px-4">{{ $emp->middle_name }}</td>
+                                    <td class="py-2 border-b px-4">{{ $emp->email }}</td>
+                                    <td class="py-2 border-b px-4">{{ $emp->job_title }}</td>
                                     <td class="py-2 border-b px-4">
-                                        <a href="{{ route('employee.edit', $employee->id) }}" class="text-blue-500 hover:text-blue-700">Edit</a>
-                                        <form method="POST" action="{{ route('employee.destroy', $employee->id) }}" style = "display:inline">
+                                        <a href="{{ route('employee.edit', $emp->id) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                                        <form method="POST" action="{{ route('employee.destroy', $emp->id) }}" style = "display:inline">
                                             @csrf
                                             @method("DELETE")
-                                            <button type= "submit" class="text-red-500 hover:text-red-700">Delete</button>
+                                            <button type= "submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</button>
                                         </form>
                                     </td>   
                                 </tr>
